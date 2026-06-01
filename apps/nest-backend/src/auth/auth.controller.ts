@@ -6,7 +6,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
 import { Repository } from 'typeorm';
 
-
 @Controller('auth')
 export class AuthController {
   constructor(
