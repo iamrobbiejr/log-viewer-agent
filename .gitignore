@@ -10,7 +10,9 @@ release_agent.bat
 
 
 node_modules
-docs/
+docs/.docusaurus
+docs/build
+docs/node_modules
 dist
 dist-ssr
 *.local
