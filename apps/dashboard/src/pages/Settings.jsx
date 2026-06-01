@@ -59,21 +59,21 @@ export default function Settings() {
         <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-4">
           Registration Security
         </h2>
-        
+
         <form onSubmit={handleSave} className="space-y-6">
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Allowed Email Domains
             </label>
             <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">
-              Enter a comma-separated list of domains allowed to request access (e.g., <code>lafrontiere.co.zw, example.com</code>). 
+              Enter a comma-separated list of domains allowed to request access (e.g., <code>company.com, example.com</code>).
               Leave blank to allow any email domain.
             </p>
             <Input
               type="text"
               value={allowedDomains}
               onChange={(e) => setAllowedDomains(e.target.value)}
-              placeholder="lafrontiere.co.zw"
+              placeholder="company.com"
             />
           </div>
 
