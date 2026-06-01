@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { checkEmail, login as apiLogin, requestAccess } from '../api/authApi';
 import { useAuth } from '../contexts/AuthContext';
 import { Input } from '../components/ui/Input';
@@ -15,6 +15,15 @@ export default function Login() {
 
   const { login } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.state?.message) {
+      setError(location.state.message);
+      // Clear the state so it doesn't persist on refresh
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   const getPasswordStrength = (pwd) => {
     if (!pwd) return { isValid: false, message: '' };

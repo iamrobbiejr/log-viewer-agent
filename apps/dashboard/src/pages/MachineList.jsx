@@ -1,17 +1,27 @@
 import { useQuery } from '@tanstack/react-query';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { fetchMachines } from '../api/logApi';
 import CategoryGroup from '../components/CategoryGroup';
 import MachineCardSkeleton from '../components/MachineCardSkeleton';
 import Navbar from '../components/Navbar';
+import { useAuth } from '../contexts/AuthContext';
 
 export default function MachineList() {
   const navigate = useNavigate();
+  const { logout } = useAuth();
 
   const { data, isLoading, isError, error, refetch, isFetching } = useQuery({
     queryKey: ['machines'],
     queryFn: fetchMachines,
   });
+
+  useEffect(() => {
+    if (isError && error?.status === 401) {
+      logout();
+      navigate('/login', { state: { message: 'Session expired, login again' } });
+    }
+  }, [isError, error, logout, navigate]);
 
   const handleSelectMachine = (machine) => {
     navigate(`/machines/${machine.id}/logs`);
