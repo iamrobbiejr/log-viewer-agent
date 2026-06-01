@@ -1,5 +1,7 @@
 # Log Viewer Agent & Dashboard
 
+![Log Viewer Agent Logo](https://i.postimg.cc/GhRtF6WH/main-logo.png)
+
 A self-hosted, open-source solution to view local log files from any number of remote Windows machines securely through a beautiful web dashboard.
 
 ## The "Why"
