@@ -6,12 +6,13 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './user.entity';
 import { Repository } from 'typeorm';
 
+
 @Controller('auth')
 export class AuthController {
   constructor(
     private readonly authService: AuthService,
     @InjectRepository(User) private usersRepository: Repository<User>,
-  ) {}
+  ) { }
 
   @Post('check-email')
   checkEmail(@Body() body: any) {
@@ -49,7 +50,7 @@ export class AuthController {
 
 @Controller('user')
 export class UserController {
-  constructor(@InjectRepository(User) private usersRepository: Repository<User>) {}
+  constructor(@InjectRepository(User) private usersRepository: Repository<User>) { }
 
   @UseGuards(JwtAuthGuard)
   @Get()
