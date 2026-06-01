@@ -49,7 +49,10 @@ export default function Navbar() {
               <Link to="/" className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-gray-100 transition-colors">Home</Link>
 
               {user.role === 'admin' && (
-                <Link to="/admin" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors">Admin</Link>
+                <>
+                  <Link to="/admin" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors">Admin</Link>
+                  <Link to="/admin/settings" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors">Settings</Link>
+                </>
               )}
               <Link to="/admin/machines" className="text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 transition-colors">Machines</Link>
 

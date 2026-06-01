@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Profile from './pages/Profile';
 import AdminDashboard from './pages/AdminDashboard';
 import MachineManagement from './pages/MachineManagement';
+import Settings from './pages/Settings';
 import Navbar from './components/Navbar';
 import { ToastProvider } from './components/ui/Toast';
 import { ThemeProvider } from './contexts/ThemeContext';
@@ -42,6 +43,7 @@ function App() {
 
               <Route element={<ProtectedRoute requireAdmin={true} />}>
                 <Route path="/admin" element={<Layout><AdminDashboard /></Layout>} />
+                <Route path="/admin/settings" element={<Layout><Settings /></Layout>} />
               </Route>
 
               {/* Fallback route */}

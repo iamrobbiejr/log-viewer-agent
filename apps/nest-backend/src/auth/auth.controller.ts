@@ -15,25 +15,24 @@ export class AuthController {
 
   @Post('check-email')
   checkEmail(@Body() body: any) {
-    // Basic validation to match Laravel
-    if (!body.email || !body.email.endsWith('@lafrontiere.co.zw')) {
-      throw new UnprocessableEntityException({ email: ['The email must end with @lafrontiere.co.zw'] });
+    if (!body.email) {
+      throw new UnprocessableEntityException({ email: ['The email is required.'] });
     }
     return this.authService.checkEmail(body.email);
   }
 
   @Post('login')
   login(@Body() body: any) {
-    if (!body.email || !body.email.endsWith('@lafrontiere.co.zw')) {
-      throw new UnprocessableEntityException({ email: ['The email must end with @lafrontiere.co.zw'] });
+    if (!body.email) {
+      throw new UnprocessableEntityException({ email: ['The email is required.'] });
     }
     return this.authService.login(body);
   }
 
   @Post('request-access')
   requestAccess(@Body() body: any) {
-    if (!body.email || !body.email.endsWith('@lafrontiere.co.zw')) {
-      throw new UnprocessableEntityException({ email: ['The email must end with @lafrontiere.co.zw'] });
+    if (!body.email) {
+      throw new UnprocessableEntityException({ email: ['The email is required.'] });
     }
     if (!body.password || body.password.length < 8) {
       throw new UnprocessableEntityException({ password: ['The password must be at least 8 characters.'] });

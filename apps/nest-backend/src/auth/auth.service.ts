@@ -4,12 +4,14 @@ import { Repository } from 'typeorm';
 import { User } from './user.entity';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
+import { SettingsService } from '../settings/settings.service';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectRepository(User) private usersRepository: Repository<User>,
     private jwtService: JwtService,
+    private settingsService: SettingsService,
   ) {}
 
   async checkEmail(email: string): Promise<{ exists: boolean }> {
@@ -42,6 +44,16 @@ export class AuthService {
     const existing = await this.usersRepository.findOne({ where: { email: dto.email } });
     if (existing) {
       throw new UnprocessableEntityException({ email: ['The email has already been taken.'] });
+    }
+
+    const allowedDomainsStr = await this.settingsService.getValue('allowed_email_domains');
+    if (allowedDomainsStr && allowedDomainsStr.trim() !== '') {
+      const allowedDomains = allowedDomainsStr.split(',').map(d => d.trim().toLowerCase());
+      const emailDomain = dto.email.split('@')[1]?.toLowerCase();
+      
+      if (!allowedDomains.includes(emailDomain)) {
+        throw new UnprocessableEntityException({ email: ['This email domain is not allowed for registration.'] });
+      }
     }
 
     const hashedPassword = await bcrypt.hash(dto.password, 10);

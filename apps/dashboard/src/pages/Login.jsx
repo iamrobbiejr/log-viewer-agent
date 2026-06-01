@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { checkEmail, login as apiLogin, requestAccess } from '../api/authApi';
+import { fetchPublicSettings } from '../api/settingsApi';
 import { useAuth } from '../contexts/AuthContext';
 import { Input } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
@@ -17,7 +18,17 @@ export default function Login() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const [allowedDomains, setAllowedDomains] = useState(null);
+
   useEffect(() => {
+    fetchPublicSettings()
+      .then((data) => {
+        if (data.allowed_email_domains) {
+          setAllowedDomains(data.allowed_email_domains.split(',').map(d => d.trim().toLowerCase()));
+        }
+      })
+      .catch(console.error);
+
     if (location.state?.message) {
       setError(location.state.message);
       // Clear the state so it doesn't persist on refresh
@@ -40,9 +51,13 @@ export default function Login() {
   const handleEmailSubmit = async (e) => {
     e.preventDefault();
     setError(null);
-    if (!email.endsWith('@lafrontiere.co.zw')) {
-      setError('Only @lafrontiere.co.zw emails are allowed.');
-      return;
+    
+    if (allowedDomains && allowedDomains.length > 0) {
+      const emailDomain = email.split('@')[1]?.toLowerCase();
+      if (!allowedDomains.includes(emailDomain)) {
+        setError(`Only these domains are allowed: ${allowedDomains.join(', ')}`);
+        return;
+      }
     }
 
     setLoading(true);
@@ -121,7 +136,7 @@ export default function Login() {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@lafrontiere.co.zw"
+                  placeholder="johndoe@example.com"
                 />
               </div>
               <Button type="submit" variant="primary" className="w-full" disabled={loading}>

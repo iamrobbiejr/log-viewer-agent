@@ -9,6 +9,8 @@ import { ProxyModule } from './proxy/proxy.module';
 import { User } from './auth/user.entity';
 import { Machine } from './machines/machine.entity';
 import { MachinesModule } from './machines/machines.module';
+import { Setting } from './settings/setting.entity';
+import { SettingsModule } from './settings/settings.module';
 
 @Module({
   imports: [
@@ -19,7 +21,7 @@ import { MachinesModule } from './machines/machines.module';
       type: process.env.DATABASE_URL ? 'postgres' : 'better-sqlite3',
       url: process.env.DATABASE_URL,
       database: process.env.DATABASE_URL ? undefined : 'database.sqlite',
-      entities: [User, Machine],
+      entities: [User, Machine, Setting],
       synchronize: true, // Auto-create schema in development
       ssl: process.env.DATABASE_URL ? { rejectUnauthorized: false } : undefined,
     }),
@@ -27,6 +29,7 @@ import { MachinesModule } from './machines/machines.module';
     AdminModule,
     ProxyModule,
     MachinesModule,
+    SettingsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

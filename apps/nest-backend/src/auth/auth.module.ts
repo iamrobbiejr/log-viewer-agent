@@ -7,10 +7,12 @@ import { AuthController, UserController } from './auth.controller';
 import { User } from './user.entity';
 import { JwtStrategy } from './jwt.strategy';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { SettingsModule } from '../settings/settings.module';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([User]),
+    SettingsModule,
     PassportModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],
