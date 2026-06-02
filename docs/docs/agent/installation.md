@@ -4,6 +4,18 @@ sidebar_position: 3
 
 # Agent Installation Guide
 
+<div style={{position: 'relative', paddingBottom: '64.9%', height: 0}}>
+  <iframe 
+    src="https://www.loom.com/embed/52d5d41e316c4e6795fcc49fc6a80837" 
+    frameBorder="0" 
+    webkitallowfullscreen="true" 
+    mozallowfullscreen="true" 
+    allowFullScreen={true} 
+    style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%'}}>
+  </iframe>
+</div>
+<br />
+
 This guide covers how to install the **PDS Log Agent** on a Windows machine. The agent will be installed as a permanent background Windows Service (`LogViewerAgent`) that automatically starts on system boot. **You do not need to manually run `uvicorn` or leave any terminal windows open.**
 
 ## Prerequisites
@@ -28,7 +40,7 @@ This guide covers how to install the **PDS Log Agent** on a Windows machine. The
 During the installation, the script will prompt you for a few details to generate the `config.json` file.
 When prompted for the **Agent Secret**, ensure you provide a secure string (or paste the UUID generated in the Cloudflare/Dashboard setup).
 
-> [Screenshot/s needed] - Provide a screenshot of the Command Prompt asking for install inputs.
+![alt text](image.png)
 
 ## Verifying the Installation
 
@@ -36,6 +48,8 @@ To verify that the service is running correctly:
 1. Open a web browser on the local machine.
 2. Go to `http://localhost:8000/health` (change 8000 if you used a custom port).
 3. You should see a JSON response confirming the agent is online and showing its configuration.
+![alt text](image-1.png)
+![alt text](image-2.png)
 
 ## Troubleshooting & Maintenance
 * **Logs**: If the agent fails to start, check the `logs/agent_stdout.log` and `logs/agent_stderr.log` files in the agent folder.

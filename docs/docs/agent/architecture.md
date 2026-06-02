@@ -22,4 +22,4 @@ Once discovered, it makes a POST request to your central NestJS backend, informi
 
 This allows the Dashboard to seamlessly route requests to the correct remote machine without you ever needing to know its IP address!
 
-> [Screenshot/s needed] - Add an architecture diagram showing the Agent, Ngrok, Backend, and Dashboard flow.
+![alt text](image-3.png)

@@ -6,7 +6,7 @@ sidebar_position: 1
 
 The Log Viewer Agent is a lightweight Python FastAPI application designed to run persistently on Windows machines.
 
-![Agent Logo](https://i.postimg.cc/GhRtF6WH/main-logo.png)
+![Agent Logo](image-4.png)
 
 ## Core Responsibilities
 - Securely read local `.log` files from a configured directory.

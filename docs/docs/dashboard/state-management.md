@@ -14,4 +14,3 @@ Global UI states and Authentication are managed using standard React Contexts:
 - `AuthContext`: Stores the JWT token and user profile. Automatically logs the user out if a 401 Unauthorized response is detected.
 - `ThemeContext`: Toggles between the Light and Dark modes.
 
-> [Screenshot/s needed] - Add a screenshot showing the loading states or error boundaries.

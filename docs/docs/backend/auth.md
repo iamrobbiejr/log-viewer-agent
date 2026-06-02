@@ -17,6 +17,5 @@ By default, registration can be locked down to specific email domains.
 ## Role-Based Access Control (RBAC)
 We employ a simple RBAC system using NestJS Guards.
 - **Admin**: Full access. Can add/remove machines, manage global settings, and manage user accounts.
-- **User**: View-only access. Can browse machines and stream logs, but cannot modify configurations.
+- **User**: Can manage machines, view logs, and manage user accounts, but cannot modify configurations.
 
-> [Screenshot/s needed] - Provide a screenshot of the Admin Settings panel.

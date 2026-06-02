@@ -7,7 +7,7 @@ import Heading from '@theme/Heading';
 import styles from './index.module.css';
 
 function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
       <div className="container">
@@ -70,12 +70,12 @@ const FeatureList = [
   },
 ];
 
-function Feature({image, title, description, link}) {
+function Feature({ image, title, description, link }) {
   return (
-    <div className={clsx('col col--3')} style={{marginBottom: '2rem'}}>
-      <Link to={link} style={{textDecoration: 'none', color: 'inherit'}}>
+    <div className={clsx('col col--3')} style={{ marginBottom: '2rem', borderRadius: "2.5%", border: "2px solid lightgray", padding: "2rem", marginLeft: "1rem", marginRight: "1rem" }}>
+      <Link to={link} style={{ textDecoration: 'none', color: 'inherit' }}>
         <div className="text--center">
-          <img src={image} alt={title} style={{height: '100px', marginBottom: '1rem', borderRadius: '8px'}} />
+          {/* <img src={image} alt={title} style={{height: '100px', marginBottom: '1rem', borderRadius: '8px'}} /> */}
         </div>
         <div className="text--center padding-horiz--md">
           <Heading as="h3">{title}</Heading>
@@ -87,16 +87,16 @@ function Feature({image, title, description, link}) {
 }
 
 export default function Home() {
-  const {siteConfig} = useDocusaurusContext();
+  const { siteConfig } = useDocusaurusContext();
   return (
     <Layout
       title={`Home | ${siteConfig.title}`}
       description="Documentation for Log Viewer Agent">
       <HomepageHeader />
       <main>
-        <section style={{display: 'flex', alignItems: 'center', padding: '2rem 0', width: '100%'}}>
+        <section style={{ display: 'flex', alignItems: 'center', padding: '2rem 0', width: '100%' }}>
           <div className="container">
-            <div className="row" style={{justifyContent: 'center'}}>
+            <div className="row" style={{ justifyContent: 'center' }}>
               {FeatureList.map((props, idx) => (
                 <Feature key={idx} {...props} />
               ))}
