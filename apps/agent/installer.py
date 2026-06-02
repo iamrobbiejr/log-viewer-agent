@@ -143,9 +143,9 @@ def run_installer():
 
     # Suggest common categories from company name for convenience
     suggested_categories = [
-        "Freight North", "Freight South", "Freight East", "Freight West",
-        "Bus North",     "Bus South",     "Bus East",     "Bus West",
-        "Admin",         "Operations",    "Warehouse",
+        "Freight North", "Freight South",
+        "Bus North",     "Bus South","LV North","LV South",
+        "Admin", "Back Office",
     ]
 
     terminal_category = prompt_choice(
